@@ -79,17 +79,20 @@ class _TranscriptorAppState extends State<TranscriptorWidget> {
     });
     _cancelRecognitionHandler();
   }
-
+  Widget _newDialog(BuildContext context)
+  {
+    return new SimpleDialog(title: new Text("Error"), children: [
+      new Padding(
+          padding: new EdgeInsets.all(12.0),
+          child: const Text('Recognition not started'))
+    ]);
+  }
   Future _startRecognition() async {
     final res = await SpeechRecognizer.start(widget.lang.code);
     if (!res)
       showDialog(
           context: context,
-          child: new SimpleDialog(title: new Text("Error"), children: [
-            new Padding(
-                padding: new EdgeInsets.all(12.0),
-                child: const Text('Recognition not started'))
-          ]));
+          builder : _newDialog);
   }
 
   Future _cancelRecognitionHandler() async {
@@ -205,7 +208,7 @@ class _TranscriptorAppState extends State<TranscriptorWidget> {
 
   void _showStatus(String action) {
     final label = "Task $action : ${incompleteTasks.length} left "
-        "/ ${numArchived} archived";
+        "/ $numArchived archived";
     Scaffold.of(context).showSnackBar(new SnackBar(content: new Text(label)));
   }
 }

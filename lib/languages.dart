@@ -4,6 +4,7 @@ const languages = const [
   const Language('English', 'en_US'),
   const Language('Pусский', 'ru_RU'),
   const Language('Italiano', 'it_IT'),
+  const Language('Chinese (S)', 'zh-CN'),
 ];
 
 class Language {

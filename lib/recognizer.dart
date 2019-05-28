@@ -2,27 +2,27 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-const MethodChannel _speech_channel =
+const MethodChannel _speechChannel =
     const MethodChannel("bz.rxla.flutter/recognizer");
 
 class SpeechRecognizer {
   static void setMethodCallHandler(handler) {
-    _speech_channel.setMethodCallHandler(handler);
+    _speechChannel.setMethodCallHandler(handler);
   }
 
   static Future activate() {
-    return _speech_channel.invokeMethod("activate");
+    return _speechChannel.invokeMethod("activate");
   }
 
   static Future start(String lang) {
-    return _speech_channel.invokeMethod("start", lang);
+    return _speechChannel.invokeMethod("start", lang);
   }
 
   static Future cancel() {
-    return _speech_channel.invokeMethod("cancel");
+    return _speechChannel.invokeMethod("cancel");
   }
 
   static Future stop() {
-    return _speech_channel.invokeMethod("stop");
+    return _speechChannel.invokeMethod("stop");
   }
 }
